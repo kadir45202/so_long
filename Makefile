@@ -1,6 +1,6 @@
-NAME = a
+NAME = so_long
 
-SOURCES = main.c
+SOURCES = main.c ./gnl/get_next_line.c ./gnl/get_next_line_utils.c
 
 CC = @gcc
 
