@@ -1,6 +1,6 @@
 NAME = so_long
 
-SOURCES = main.c ./gnl/get_next_line.c ./gnl/get_next_line_utils.c
+SOURCES = main.c ./gnl/get_next_line.c ./gnl/get_next_line_utils.c ./libft/ft_split.c map_checker.c
 
 CC = @gcc
 

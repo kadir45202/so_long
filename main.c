@@ -1,4 +1,15 @@
-# include "./mlx/mlx.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcetin <kcetin@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/09 20:34:31 by kcetin            #+#    #+#             */
+/*   Updated: 2022/05/09 20:34:32 by kcetin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include "so_long.h"
 
 void xpm_to_image(t_list *list, t_img *img)
@@ -13,31 +24,17 @@ void xpm_to_image(t_list *list, t_img *img)
 	img->point = mlx_xpm_file_to_image(list->mlx, img->point_path, &list->x, &list->y);
 }
 
-void map(t_list *list, t_img *img)
+int kapat(int key)
 {
-	int i = -1;
-	list->fd = open("./maps/map.ber", O_RDONLY);
-	char *str;
-	str = malloc(sizeof(str) * 1000);
-	read(list->fd, str, 110);
-	while(str[i++] != '9')
-	{
-		if(str[i] == '1')
-			mlx_put_image_to_window(list->mlx, list->win, img->wall, list->x1, list->y1);
-		if(str[i] == '2')
-			mlx_put_image_to_window(list->mlx, list->win, img->grass, list->x1, list->y1);
-		if(str[i] == '3')
-			mlx_put_image_to_window(list->mlx, list->win, img->player, list->x1, list->y1);
-		if(str[i] == '4')
-			mlx_put_image_to_window(list->mlx, list->win, img->point, list->x1, list->y1);
-		list->x1 += 32;
-		if(str[i] == '\n')
-		{
-			list->x1 = 0;
-			list->y1 += 32;
-		}
-	}
-	free(str);
+	exit(0);
+}
+
+int keys(int key, t_list *list)
+{
+	if(key == 53)
+		exit(0);
+	printf("%i\n", key);
+	return (0);
 }
 
 int main()
@@ -51,6 +48,8 @@ int main()
     xpm_to_image(list, img);
 	map(list, img);
 	free(list);
+	mlx_hook(list->win, 17, 0, kapat, 0);
+	mlx_hook(list->win, 2, 0, keys, list);
     mlx_loop(list->mlx);
+	return 0;
 }
-
