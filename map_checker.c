@@ -6,57 +6,58 @@
 /*   By: kcetin <kcetin@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 13:05:03 by kcetin            #+#    #+#             */
-/*   Updated: 2022/05/09 20:36:44 by kcetin           ###   ########.fr       */
+/*   Updated: 2022/06/08 20:30:49 by kcetin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "so_long.h"
 
-int	wall_check(t_list *list)
-{
-        int i = 0;
-        int j = 0;
-        char **a;
-		a = malloc(1000000);
-        a = ft_split(list->map, '\n');
-        while(a[i])
-                {
-                    if(i == 0 || i == 9)
-					{
-							while(a[i][j++] != '\0' && a[i][j])
-							{
-								if(a[i][j] != '1')
-								{
-									return 2;
-								}
-							}
-							j = 0;
-					}
-					i++;
-				}
-		return 1;
-}
 
-int map_to_str(t_list *list)
+
+int map_to_str(t_list *list, char **argv)
 {
 	int i;
 	i = 0;
-	list->fd = open("./maps/map.ber", O_RDONLY);
+	list->fd = open(argv[1], O_RDONLY);
 	list->map = malloc(sizeof(list->map) * 1000);
 	i = read(list->fd, list->map, 1000);
 	if(i <= 0)
-		return 0;
+	{
+	perror("Error: ");
+	exit(0);
+	}
 	return 1;
 }
 
-int map(t_list *list, t_img *img)
+void line_check(t_list *list)
+{
+	int temp = 0;
+	int i = 0;
+	char **map;
+
+	map = ft_split(list->map, '\n');
+	while(map[list->line] != NULL)
+		list->line++;
+	list->line_lenght = ft_strlen(map[0]);
+	while(map[temp] != NULL)
+	{
+		if(ft_strlen(map[temp])!= list->line_lenght)
+		{
+			printf("line lenght error\n");
+			exit(0);
+		}
+		temp++;
+	}
+	list->whole_map = map;
+	free(map);
+}
+
+int map(t_list *list, t_img *img, char **argv)
 {
 	int i;
-	i = -1;
-	map_to_str(list);
-	if(wall_check(list) == 2 || map_to_str(list) == 0)
-		exit(0);
-	while(list->map[i++] != '9')
+
+	i = 0;
+	while(list->map[i])
 	{
 		if(list->map[i] == '1')
 			mlx_put_image_to_window(list->mlx, list->win, img->wall, list->x1, list->y1);
@@ -72,6 +73,7 @@ int map(t_list *list, t_img *img)
 			list->x1 = 0;
 			list->y1 += 32;
 		}
+		i++;
 	}
 	free(list->map);
 	return (0);

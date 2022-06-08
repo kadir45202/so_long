@@ -6,13 +6,13 @@
 /*   By: kcetin <kcetin@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 20:34:31 by kcetin            #+#    #+#             */
-/*   Updated: 2022/05/09 20:34:32 by kcetin           ###   ########.fr       */
+/*   Updated: 2022/06/08 20:30:59 by kcetin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "so_long.h"
 
-void xpm_to_image(t_list *list, t_img *img)
+void xpm_to_image(t_list *list, t_img *img, char **argv)
 {
 	img->wall_path = "./img/wall.xpm";
 	img->grass_path = "./img/grass.xpm";
@@ -22,9 +22,11 @@ void xpm_to_image(t_list *list, t_img *img)
 	img->grass = mlx_xpm_file_to_image(list->mlx, img->grass_path, &list->x, &list->y);
 	img->player = mlx_xpm_file_to_image(list->mlx, img->player_path, &list->x, &list->y);
 	img->point = mlx_xpm_file_to_image(list->mlx, img->point_path, &list->x, &list->y);
+
+	map(list, img, argv);
 }
 
-int kapat(int key)
+int ft_exit(int key)
 {
 	exit(0);
 }
@@ -32,24 +34,66 @@ int kapat(int key)
 int keys(int key, t_list *list)
 {
 	if(key == 53)
+		{
+		mlx_destroy_window(list->mlx, list->win);
 		exit(0);
+		}
+	if(key == 13)
+		{
+			//if(list->whole_map[list->line - 1][list->line_lenght] != '1')
+				
+			//	player_up(list);
+		}
 	printf("%i\n", key);
 	return (0);
 }
 
-int main()
+
+void map_control(t_list *list)
+{
+	int i = 0;
+	int line = 0;
+	while(list->whole_map[i] != NULL)
+	{
+		while(list->whole_map[i][line])
+		{
+			if(list->whole_map[i][line] == '1' || list->whole_map[i][line] == '2'
+			|| list->whole_map[i][line] == '3' || list->whole_map[i][line] == '4')
+			{
+				line++;
+			}
+			else
+			{
+				printf("character error\n");
+				exit(0);
+			}
+		}
+		i++;
+	}
+}
+
+
+int main(int agrc, char **argv)
 {
 	t_list *list = malloc(sizeof(t_list) * 10);
 	t_img *img = malloc(sizeof(t_list) * 10);
     list->x1 = 0;
     list->y1 = 0;
     list->mlx = mlx_init();
-    list->win = mlx_new_window(list->mlx, 320, 320, "chess");
-    xpm_to_image(list, img);
-	map(list, img);
-	free(list);
-	mlx_hook(list->win, 17, 0, kapat, 0);
+	map_to_str(list, argv);
+	//map_control(list);
+	line_check(list);
+    list->win = mlx_new_window(list->mlx, list->line_lenght * 32, list->line * 32, "./so_long");
+	//printf("%d %d\n", list->line_lenght * 16, list->line * 16);
+
+    xpm_to_image(list, img, argv);
+	
+	//ok
+	mlx_hook(list->win, 17, 0, ft_exit, 0);
 	mlx_hook(list->win, 2, 0, keys, list);
+
     mlx_loop(list->mlx);
+	free(list->whole_map);
+	free(list);
 	return 0;
 }

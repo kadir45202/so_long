@@ -19,6 +19,9 @@ typedef struct list{
     void *mlx;
     void *win;
 	char *map;
+	char **whole_map;
+	int line;
+	int line_lenght;
 } t_list;
 
 typedef struct img{
@@ -33,8 +36,12 @@ typedef struct img{
 	
 } t_img;
 
-int	wall_check(t_list *list);
-int map(t_list *list, t_img *img);
-int map_to_str(t_list *list);
+int map(t_list *list, t_img *img, char **argv);
+int map_to_str(t_list *list, char **argv);
 
+//checks
+void line_check(t_list *list);
+
+//player moves
+void player_up(t_list *list);
 #endif
