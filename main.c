@@ -6,7 +6,7 @@
 /*   By: kcetin <kcetin@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 20:34:31 by kcetin            #+#    #+#             */
-/*   Updated: 2022/06/08 20:30:59 by kcetin           ###   ########.fr       */
+/*   Updated: 2022/06/08 23:40:38 by kcetin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,13 @@ int ft_exit(int key)
 
 int keys(int key, t_list *list)
 {
-	if(key == 53)
+	if(key == 53 || key == 65307)
 		{
 		mlx_destroy_window(list->mlx, list->win);
 		exit(0);
 		}
-	if(key == 13)
+	if(key == 13 || key == 119)
 		{
-			//if(list->whole_map[list->line - 1][list->line_lenght] != '1')
-				
-			//	player_up(list);
 		}
 	printf("%i\n", key);
 	return (0);
@@ -87,11 +84,8 @@ int main(int agrc, char **argv)
 	//printf("%d %d\n", list->line_lenght * 16, list->line * 16);
 
     xpm_to_image(list, img, argv);
-	
-	//ok
 	mlx_hook(list->win, 17, 0, ft_exit, 0);
-	mlx_hook(list->win, 2, 0, keys, list);
-
+	mlx_key_hook(list->win, keys, list);
     mlx_loop(list->mlx);
 	free(list->whole_map);
 	free(list);

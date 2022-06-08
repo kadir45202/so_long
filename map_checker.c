@@ -6,13 +6,11 @@
 /*   By: kcetin <kcetin@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 13:05:03 by kcetin            #+#    #+#             */
-/*   Updated: 2022/06/08 20:30:49 by kcetin           ###   ########.fr       */
+/*   Updated: 2022/06/08 23:24:59 by kcetin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "so_long.h"
-
-
 
 int map_to_str(t_list *list, char **argv)
 {
@@ -41,6 +39,11 @@ void line_check(t_list *list)
 	list->line_lenght = ft_strlen(map[0]);
 	while(map[temp] != NULL)
 	{
+		if(map[temp][0] != '1' || map[temp][list->line_lenght - 1] != '1')
+		{
+			printf("wall error\n");
+			exit(0);
+		}
 		if(ft_strlen(map[temp])!= list->line_lenght)
 		{
 			printf("line lenght error\n");
