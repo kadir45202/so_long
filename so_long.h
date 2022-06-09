@@ -24,7 +24,8 @@ typedef struct list{
 	int line_lenght;
 	int player_x;
 	int player_y;
-
+	int coin;
+	int coin_count;
 	void *wall;
 	void *grass;
 	void *wall_path;
@@ -33,19 +34,10 @@ typedef struct list{
 	void *player;
 	void *point_path;
 	void *point;
+	void *enemy_path;
+	void *enemy;
+	int step;
 } t_list;
-
-typedef struct img{
-	void *wall;
-	void *grass;
-	void *wall_path;
-	void *grass_path;
-	void *player_path;
-	void *player;
-	void *point_path;
-	void *point;
-	
-} t_img;
 
 int map(t_list *list);
 int map_to_str(t_list *list, char **argv);

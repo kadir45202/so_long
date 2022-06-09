@@ -6,7 +6,7 @@
 /*   By: kcetin <kcetin@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 13:05:03 by kcetin            #+#    #+#             */
-/*   Updated: 2022/06/09 21:20:57 by kcetin           ###   ########.fr       */
+/*   Updated: 2022/06/09 23:47:32 by kcetin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void line_check(t_list *list)
 	list->whole_map = malloc(sizeof(char *) * 100);
 	list->whole_map = ft_split(list->map, '\n');
 	while(list->whole_map[++list->line] != NULL)
-	list->line_lenght = ft_strlen(list->whole_map[0]);//satır uzunluğu için
+	list->line_lenght = ft_strlen(list->whole_map[0]);
 	while(list->whole_map[temp] != NULL)
 	{
 		if(list->whole_map[temp][0] != '1' || list->whole_map[temp][list->line_lenght - 1] != '1')
@@ -64,18 +64,24 @@ int map(t_list *list)
 	i = 0;
 	list->x1 = 0;
 	list->y1 = 0;
+	list->coin = 0;
 	while(list->whole_map[i])
 	{
 		while(list->whole_map[i][j] != '\0')
 		{
 		if(list->whole_map[i][j] == '1')
 			mlx_put_image_to_window(list->mlx, list->win, list->wall, list->x1, list->y1);
-		if(list->whole_map[i][j] == '2')
+		if(list->whole_map[i][j] == '0')
 			mlx_put_image_to_window(list->mlx, list->win, list->grass, list->x1, list->y1);
-		if(list->whole_map[i][j] == '3')
+		if(list->whole_map[i][j] == 'P')
 			mlx_put_image_to_window(list->mlx, list->win, list->player, list->x1, list->y1);
-		if(list->whole_map[i][j] == '4')
+		if(list->whole_map[i][j] == 'C')
+		{
 			mlx_put_image_to_window(list->mlx, list->win, list->point, list->x1, list->y1);
+			list->coin += 1;
+		}
+		if(list->whole_map[i][j] == 'E')
+			mlx_put_image_to_window(list->mlx, list->win, list->enemy, list->x1, list->y1);
 		list->x1 += 32;
 		j++;
 		}
@@ -84,13 +90,5 @@ int map(t_list *list)
 		j = 0;
 		i++;
 	}
-
-	printf("%s\n", list->whole_map[0]);
-	printf("%s\n", list->whole_map[1]);
-	printf("%s\n", list->whole_map[2]);
-	printf("%s\n", list->whole_map[3]);
-	printf("%s\n", list->whole_map[5]);
-	printf("%s\n", list->whole_map[6]);
-	printf("%s\n", list->whole_map[7]);
 	return (0);
 }
