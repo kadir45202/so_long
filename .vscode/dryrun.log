@@ -1,0 +1,5 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/kcetin/Desktop/so_long'
+gcc main.c ./gnl/get_next_line.c ./gnl/get_next_line_utils.c ./libft/libft.a map_checker.c map_new.c player.c -Lmlx -lmlx -framework OpenGL -framework AppKit -o so_long
+make: Leaving directory `/Users/kcetin/Desktop/so_long'
+ 

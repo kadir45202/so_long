@@ -22,6 +22,17 @@ typedef struct list{
 	char **whole_map;
 	int line;
 	int line_lenght;
+	int player_x;
+	int player_y;
+
+	void *wall;
+	void *grass;
+	void *wall_path;
+	void *grass_path;
+	void *player_path;
+	void *player;
+	void *point_path;
+	void *point;
 } t_list;
 
 typedef struct img{
@@ -36,7 +47,7 @@ typedef struct img{
 	
 } t_img;
 
-int map(t_list *list, t_img *img, char **argv);
+int map(t_list *list);
 int map_to_str(t_list *list, char **argv);
 
 //checks
@@ -44,4 +55,7 @@ void line_check(t_list *list);
 
 //player moves
 void player_up(t_list *list);
+void player_down(t_list *list);
+void player_right(t_list *list);
+void player_left(t_list *list);
 #endif

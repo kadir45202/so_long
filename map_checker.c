@@ -6,7 +6,7 @@
 /*   By: kcetin <kcetin@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 13:05:03 by kcetin            #+#    #+#             */
-/*   Updated: 2022/06/08 23:24:59 by kcetin           ###   ########.fr       */
+/*   Updated: 2022/06/09 21:20:57 by kcetin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,60 +24,73 @@ int map_to_str(t_list *list, char **argv)
 	perror("Error: ");
 	exit(0);
 	}
-	return 1;
+	return (1);
 }
 
 void line_check(t_list *list)
 {
 	int temp = 0;
 	int i = 0;
-	char **map;
-
-	map = ft_split(list->map, '\n');
-	while(map[list->line] != NULL)
-		list->line++;
-	list->line_lenght = ft_strlen(map[0]);
-	while(map[temp] != NULL)
+	list->whole_map = malloc(sizeof(char *) * 100);
+	list->whole_map = ft_split(list->map, '\n');
+	while(list->whole_map[++list->line] != NULL)
+	list->line_lenght = ft_strlen(list->whole_map[0]);//satır uzunluğu için
+	while(list->whole_map[temp] != NULL)
 	{
-		if(map[temp][0] != '1' || map[temp][list->line_lenght - 1] != '1')
+		if(list->whole_map[temp][0] != '1' || list->whole_map[temp][list->line_lenght - 1] != '1')
 		{
 			printf("wall error\n");
 			exit(0);
 		}
-		if(ft_strlen(map[temp])!= list->line_lenght)
+		if(ft_strlen(list->whole_map[temp])!= list->line_lenght)
 		{
 			printf("line lenght error\n");
 			exit(0);
 		}
+		if(temp == 0 || temp == list->line - 1)
+			while (list->whole_map[temp][i])
+				if(list->whole_map[temp][i++] != '1')
+					exit(0);
+		i = 0;
 		temp++;
 	}
-	list->whole_map = map;
-	free(map);
 }
 
-int map(t_list *list, t_img *img, char **argv)
+int map(t_list *list)
 {
 	int i;
-
+	int j;
+	j = 0;
 	i = 0;
-	while(list->map[i])
+	list->x1 = 0;
+	list->y1 = 0;
+	while(list->whole_map[i])
 	{
-		if(list->map[i] == '1')
-			mlx_put_image_to_window(list->mlx, list->win, img->wall, list->x1, list->y1);
-		if(list->map[i] == '2')
-			mlx_put_image_to_window(list->mlx, list->win, img->grass, list->x1, list->y1);
-		if(list->map[i] == '3')
-			mlx_put_image_to_window(list->mlx, list->win, img->player, list->x1, list->y1);
-		if(list->map[i] == '4')
-			mlx_put_image_to_window(list->mlx, list->win, img->point, list->x1, list->y1);
-		list->x1 += 32;
-		if(list->map[i] == '\n')
+		while(list->whole_map[i][j] != '\0')
 		{
-			list->x1 = 0;
-			list->y1 += 32;
+		if(list->whole_map[i][j] == '1')
+			mlx_put_image_to_window(list->mlx, list->win, list->wall, list->x1, list->y1);
+		if(list->whole_map[i][j] == '2')
+			mlx_put_image_to_window(list->mlx, list->win, list->grass, list->x1, list->y1);
+		if(list->whole_map[i][j] == '3')
+			mlx_put_image_to_window(list->mlx, list->win, list->player, list->x1, list->y1);
+		if(list->whole_map[i][j] == '4')
+			mlx_put_image_to_window(list->mlx, list->win, list->point, list->x1, list->y1);
+		list->x1 += 32;
+		j++;
 		}
+		list->x1 = 0;
+		list->y1 += 32;
+		j = 0;
 		i++;
 	}
-	free(list->map);
+
+	printf("%s\n", list->whole_map[0]);
+	printf("%s\n", list->whole_map[1]);
+	printf("%s\n", list->whole_map[2]);
+	printf("%s\n", list->whole_map[3]);
+	printf("%s\n", list->whole_map[5]);
+	printf("%s\n", list->whole_map[6]);
+	printf("%s\n", list->whole_map[7]);
 	return (0);
 }
