@@ -8,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Thu Jun  9 21:01:38 2022
+# Make data base, printed on Fri Jun 10 02:07:46 2022
 
 # Variables
 
@@ -39,7 +39,7 @@ _ = /usr/bin/make
 # makefile (from `Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
 # makefile (from `Makefile', line 3)
-SOURCES = main.c ./gnl/get_next_line.c ./gnl/get_next_line_utils.c ./libft/libft.a map_checker.c map_new.c player.c
+SOURCES = main.c ./gnl/get_next_line.c ./gnl/get_next_line_utils.c ./libft/libft.a map_checker.c player.c
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
@@ -75,7 +75,7 @@ VSCODE_CODE_CACHE_PATH = /Users/kcetin/Library/Application Support/Code/CachedDa
 # environment
 LOGNAME = kcetin
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
@@ -151,9 +151,9 @@ VSCODE_PID = 8002
 
 # Directories
 
-# . (device 16777225, inode 1266865): 18 files, no impossibilities.
+# . (device 16777225, inode 1266865): 17 files, no impossibilities.
 
-# 18 files, no impossibilities in 1 directories.
+# 17 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -179,7 +179,7 @@ all:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-09 12:30:18
+#  Last modified 2022-06-10 02:07:19
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -229,7 +229,7 @@ so_long:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Thu Jun  9 21:01:38 2022
+# Finished Make data base on Fri Jun 10 02:07:46 2022
 
  
 make: *** No rule to make target `all'.  Stop.

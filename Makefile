@@ -1,6 +1,6 @@
 NAME = so_long
 
-SOURCES = main.c ./gnl/get_next_line.c ./gnl/get_next_line_utils.c ./libft/libft.a map_checker.c map_new.c player.c
+SOURCES = main.c ./gnl/get_next_line.c ./gnl/get_next_line_utils.c ./libft/libft.a map_checker.c player.c
 
 CC = @gcc
 

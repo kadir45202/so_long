@@ -39,12 +39,12 @@ typedef struct list{
 	int step;
 } t_list;
 
-int map(t_list *list);
+void map(t_list *list);
 int map_to_str(t_list *list, char **argv);
-
+void	xpm_to_image(t_list *list, char **argv);
 //checks
 void line_check(t_list *list);
-
+void	ft_error(char *str);
 //player moves
 void player_up(t_list *list);
 void player_down(t_list *list);
