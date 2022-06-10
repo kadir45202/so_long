@@ -6,7 +6,7 @@
 /*   By: kcetin <kcetin@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 20:34:31 by kcetin            #+#    #+#             */
-/*   Updated: 2022/06/10 02:04:19 by kcetin           ###   ########.fr       */
+/*   Updated: 2022/06/10 03:58:53 by kcetin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	player_left(t_list *list)
 	&& (list->whole_map[list->player_y][list->player_x - 1] != 'E'
 	|| list->coin == 0))
 	{
-		if (list->whole_map[list->player_y][list->player_x - 1] == 'E')
+		if (list->whole_map[list->player_y][list->player_x - 1] == 'E' && list->coin == 0)
 		{
 			exit(0);
 		}
@@ -83,5 +83,30 @@ void	player_left(t_list *list)
 	list->whole_map[list->player_y][list->player_x - 1] = 'P';
 	list->player_x -= 1;
 		map(list);
+	}
+}
+
+void	more(t_list *l, int i, int j)
+{
+	while (l->whole_map[i][j] != '\0')
+	{
+		if (l->whole_map[i][j] == '1')
+			mlx_put_image_to_window(l->mlx, l->win, l->wall, l->x1, l->y1);
+		if (l->whole_map[i][j] == '0')
+			mlx_put_image_to_window(l->mlx, l->win, l->grass, l->x1, l->y1);
+		if (l->whole_map[i][j] == 'P')
+			mlx_put_image_to_window(l->mlx, l->win,
+				l->player, l->x1, l->y1);
+		if (l->whole_map[i][j] == 'C')
+		{
+			mlx_put_image_to_window(l->mlx, l->win,
+				l->point, l->x1, l->y1);
+				l->coin += 1;
+		}
+		if (l->whole_map[i][j] == 'E')
+			mlx_put_image_to_window(l->mlx, l->win,
+				l->enemy, l->x1, l->y1);
+		l->x1 += 32;
+		j++;
 	}
 }

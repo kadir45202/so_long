@@ -6,7 +6,7 @@
 /*   By: kcetin <kcetin@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 13:05:03 by kcetin            #+#    #+#             */
-/*   Updated: 2022/06/10 02:35:15 by kcetin           ###   ########.fr       */
+/*   Updated: 2022/06/10 02:57:24 by kcetin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void	line_check(t_list *list)
 	}
 }
 
+
+
 void	map(t_list *l)
 {
 	int	i;
@@ -63,27 +65,7 @@ void	map(t_list *l)
 	i = 0;
 	while (l->whole_map[i])
 	{
-		while (l->whole_map[i][j] != '\0')
-		{
-			if (l->whole_map[i][j] == '1')
-				mlx_put_image_to_window(l->mlx, l->win, l->wall, l->x1, l->y1);
-			if (l->whole_map[i][j] == '0')
-				mlx_put_image_to_window(l->mlx, l->win, l->grass, l->x1, l->y1);
-			if (l->whole_map[i][j] == 'P')
-				mlx_put_image_to_window(l->mlx, l->win,
-					l->player, l->x1, l->y1);
-			if (l->whole_map[i][j] == 'C')
-			{
-				mlx_put_image_to_window(l->mlx, l->win,
-					l->point, l->x1, l->y1);
-					l->coin += 1;
-			}
-			if (l->whole_map[i][j] == 'E')
-				mlx_put_image_to_window(l->mlx, l->win,
-					l->enemy, l->x1, l->y1);
-			l->x1 += 32;
-			j++;
-		}
+		more(l, i, j);
 		l->x1 = 0;
 		l->y1 += 32;
 		j = 0;

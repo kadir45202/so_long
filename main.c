@@ -6,7 +6,7 @@
 /*   By: kcetin <kcetin@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 20:34:31 by kcetin            #+#    #+#             */
-/*   Updated: 2022/06/10 02:15:42 by kcetin           ###   ########.fr       */
+/*   Updated: 2022/06/10 02:51:02 by kcetin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	keys(int key, t_list *list)
 	return (0);
 }
 
-void	map_control(t_list *list)
+void	map_control(t_list *l)
 {
 	int		i;
 	int		line;
@@ -48,11 +48,11 @@ void	map_control(t_list *list)
 
 	line = 0;
 	i = 0;
-	while (list->whole_map[i] != NULL)
+	while (l->whole_map[i] != NULL)
 	{
-		while (list->whole_map[i][line])
+		while (l->whole_map[i][line])
 		{
-			c = list->whole_map[i][line];
+			c = l->whole_map[i][line];
 			if (c == '1' || c == '0' || c == 'P'
 				|| c == 'C' || c == 'E')
 				line++;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcetin <kcetin@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/10 03:15:03 by kcetin            #+#    #+#             */
+/*   Updated: 2022/06/10 03:15:04 by kcetin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
@@ -42,6 +54,7 @@ typedef struct list{
 void map(t_list *list);
 int map_to_str(t_list *list, char **argv);
 void	xpm_to_image(t_list *list, char **argv);
+void	more(t_list *l, int i, int j);
 //checks
 void line_check(t_list *list);
 void	ft_error(char *str);
