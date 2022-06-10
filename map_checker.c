@@ -6,7 +6,7 @@
 /*   By: kcetin <kcetin@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 13:05:03 by kcetin            #+#    #+#             */
-/*   Updated: 2022/06/10 02:57:24 by kcetin           ###   ########.fr       */
+/*   Updated: 2022/06/10 04:37:53 by kcetin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ void	line_check(t_list *list)
 		temp++;
 	}
 }
-
-
 
 void	map(t_list *l)
 {

@@ -6,7 +6,7 @@
 /*   By: kcetin <kcetin@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 20:34:31 by kcetin            #+#    #+#             */
-/*   Updated: 2022/06/10 03:58:53 by kcetin           ###   ########.fr       */
+/*   Updated: 2022/06/10 04:37:37 by kcetin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,6 @@ void	player_right(t_list *list)
 	&& (list->whole_map[list->player_y][list->player_x + 1] != 'E'
 		|| list->coin == 0))
 	{
-		if (list->whole_map[list->player_y][list->player_x + 1] == 'E')
-		{
-			exit(0);
-		}
 		if (list->whole_map[list->player_y][list->player_x + 1] == 'C')
 			list->coin_count += 1;
 	list->whole_map[list->player_y][list->player_x] = '0';
