@@ -6,7 +6,7 @@
 /*   By: kcetin <kcetin@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 13:05:03 by kcetin            #+#    #+#             */
-/*   Updated: 2022/06/10 04:37:53 by kcetin           ###   ########.fr       */
+/*   Updated: 2022/06/16 15:02:14 by kcetin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,21 @@
 int	map_to_str(t_list *list, char **argv)
 {
 	int	i;
+	int	j;
 
+	j = 0;
 	i = 0;
 	list->fd = open(argv[1], O_RDONLY);
 	list->map = malloc(sizeof(list->map) * 1000);
 	i = read(list->fd, list->map, 1000);
+	while (list->map[j] != '\0')
+	{
+		if (list->map[j] == 'C')
+		{
+			list->coin += 1;
+		}
+		j++;
+	}
 	if (i <= 0)
 	{
 		perror("Error: ");

@@ -6,7 +6,7 @@
 /*   By: kcetin <kcetin@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 20:34:31 by kcetin            #+#    #+#             */
-/*   Updated: 2022/06/10 04:37:37 by kcetin           ###   ########.fr       */
+/*   Updated: 2022/06/16 14:57:19 by kcetin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	player_up(t_list *list)
 {
 	if (list->whole_map[list->player_y - 1][list->player_x] != '1'
 	&& (list->whole_map[list->player_y - 1][list->player_x] != 'E'
-	|| list->coin == 0))
+	|| list->coin == list->coin_count))
 	{
 		if (list->whole_map[list->player_y - 1][list->player_x] == 'E')
 		{
@@ -35,7 +35,7 @@ void	player_down(t_list *list)
 {
 	if (list->whole_map[list->player_y + 1][list->player_x] != '1'
 	&& (list->whole_map[list->player_y + 1][list->player_x] != 'E'
-	|| list->coin == 0))
+	|| list->coin == list->coin_count))
 	{
 		if (list->whole_map[list->player_y + 1][list->player_x] == 'E')
 			exit(0);
@@ -52,8 +52,10 @@ void	player_right(t_list *list)
 {
 	if (list->whole_map[list->player_y][list->player_x + 1] != '1'
 	&& (list->whole_map[list->player_y][list->player_x + 1] != 'E'
-		|| list->coin == 0))
+		|| list->coin == list->coin_count))
 	{
+		if (list->whole_map[list->player_y][list->player_x + 1] == 'E')
+			exit(0);
 		if (list->whole_map[list->player_y][list->player_x + 1] == 'C')
 			list->coin_count += 1;
 	list->whole_map[list->player_y][list->player_x] = '0';
@@ -67,13 +69,11 @@ void	player_left(t_list *list)
 {
 	if (list->whole_map[list->player_y][list->player_x - 1] != '1'
 	&& (list->whole_map[list->player_y][list->player_x - 1] != 'E'
-	|| list->coin == 0))
+	|| list->coin == list->coin_count))
 	{
-		if (list->whole_map[list->player_y][list->player_x - 1] == 'E' && list->coin == 0)
-		{
+		if (list->whole_map[list->player_y][list->player_x - 1] == 'E')
 			exit(0);
-		}
-		if (list->whole_map[list->player_y - 1][list->player_x - 1] == 'C')
+		if (list->whole_map[list->player_y][list->player_x - 1] == 'C')
 			list->coin_count += 1;
 	list->whole_map[list->player_y][list->player_x] = '0';
 	list->whole_map[list->player_y][list->player_x - 1] = 'P';
@@ -97,7 +97,6 @@ void	more(t_list *l, int i, int j)
 		{
 			mlx_put_image_to_window(l->mlx, l->win,
 				l->point, l->x1, l->y1);
-				l->coin += 1;
 		}
 		if (l->whole_map[i][j] == 'E')
 			mlx_put_image_to_window(l->mlx, l->win,

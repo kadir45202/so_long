@@ -6,17 +6,14 @@
 /*   By: kcetin <kcetin@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 03:15:03 by kcetin            #+#    #+#             */
-/*   Updated: 2022/06/10 04:36:46 by kcetin           ###   ########.fr       */
+/*   Updated: 2022/06/16 15:01:20 by kcetin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include <stdlib.h>
 # include <stdio.h>
-# include <fcntl.h>
-# include <unistd.h>
 # include "./gnl/get_next_line.h"
 # include "./libft/libft.h"
 # include "./mlx/mlx.h"

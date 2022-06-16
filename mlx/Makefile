@@ -11,17 +11,11 @@ CFLAGS+=-O2
 # add to match string put with X11 in size and position
 CFLAGS+= -DSTRINGPUTX11
 
-%.o: %.c
-	$(CC) -Imlx -c $< -o $@
-
 all: $(NOM)
 
 $(NOM):	$(OBJ)
 	ar -r $(NOM) $(OBJ)
 	ranlib $(NOM)
-
-$(NAME): $(OBJ)
-	$(CC) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 clean:
 	rm -f $(NOM) $(OBJ) *~

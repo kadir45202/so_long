@@ -14,6 +14,8 @@ $(NAME): $(OBJ)
 clean:
 	$(RM) *.o $(NAME)
 
+fclean:
+	$(RM) *.o $(NAME)
 re:
 	make clean
 	make

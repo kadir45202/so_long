@@ -6,7 +6,7 @@
 /*   By: kcetin <kcetin@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 20:34:31 by kcetin            #+#    #+#             */
-/*   Updated: 2022/06/10 02:51:02 by kcetin           ###   ########.fr       */
+/*   Updated: 2022/06/16 15:00:36 by kcetin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	keys(int key, t_list *list)
 {
 	list->x1 = 0;
 	list->y1 = 0;
-	list->coin = 0;
 	if (key == 53 || key == 65307)
 	{
 		mlx_destroy_window(list->mlx, list->win);
@@ -35,7 +34,7 @@ int	keys(int key, t_list *list)
 		player_down(list);
 	if (key == 2)
 		player_right(list);
-	printf("%d %d %d\n", list->step, list->coin_count, list->coin);
+	printf("%d\n", list->step);
 	list->step++;
 	return (0);
 }
@@ -100,6 +99,7 @@ int	main(int argc, char **argv)
 	list = malloc(sizeof(t_list) * 10);
 	list->x1 = 0;
 	list->y1 = 0;
+	list->step = 1;
 	list->mlx = mlx_init();
 	map_to_str(list, argv);
 	line_check(list);
